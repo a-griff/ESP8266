@@ -1,3 +1,7 @@
+// You MUST change the SSID and PASSWORD.
+// IP is assigned by DHCP.
+// Developed on an ESP8266-201
+
 #include <ESP8266WiFi.h>
  
 const char* ssid = "YOUR_SSID"; // <--- fill in here your router or wifi SSID
