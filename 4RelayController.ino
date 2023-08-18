@@ -1,11 +1,14 @@
-// You MUST change the SSID and PASSWORD.
-// IP is assigned by DHCP.
-// Developed on an ESP8266-201
-
 #include <ESP8266WiFi.h>
- 
-const char* ssid = "YOUR_SSID"; // <--- fill in here your router or wifi SSID
-const char* password = "YOUR_WIFI_PASSWORD"; //<--- fill in here your router or wifi password
+
+// BEGIN USER DEFINED VARIABLES
+ const char* ssid = "DomusVulpes"; // <--- fill in here your router or wifi SSID
+ const char* password = "8080808080"; //<--- fill in here your router or wifi password
+ String RN1 = "Relay1"; // <--- Change to whatever name you want Relay1 called on the webpage.
+ String RN2 = "Relay2"; // <--- Change to whatever name you want Relay2 called on the webpage.
+ String RN3 = "Relay3"; // <--- Change to whatever name you want Relay3 called on the webpage.
+ String RN4 = "Relay4"; // <--- Change to whatever name you want Relay4 called on the webpage.
+// END USER DEFINED VARABLES
+
  #define RELAY1 12 // relay connected to  GPIO12
  #define RELAY2 13 // relay connected to  GPIO13
  #define RELAY3 14 // relay connected to  GPIO14
@@ -83,54 +86,54 @@ void loop()
   client.flush();
  
   // Match the request
-  if (request.indexOf("/RELAY1=ON") != -1)  
+  if (request.indexOf("/R1=ON") != -1)  
   {
-    Serial.println("RELAY1=ON");
+    Serial.println("R1=ON");
     digitalWrite(RELAY1,HIGH);
     REFRESH = 1;
   }
-  if (request.indexOf("/RELAY1=OFF") != -1)  
+  if (request.indexOf("/R1=OFF") != -1)  
   {
-    Serial.println("RELAY1=OFF");
+    Serial.println("R1=OFF");
     digitalWrite(RELAY1,LOW);
     REFRESH = 1;
   }
   
-  if (request.indexOf("/RELAY2=ON") != -1)  
+  if (request.indexOf("/R2=ON") != -1)  
   {
-    Serial.println("RELAY2=ON");
+    Serial.println("R2=ON");
     digitalWrite(RELAY2,HIGH);
     REFRESH = 1;
   }
-  if (request.indexOf("/RELAY2=OFF") != -1)  
+  if (request.indexOf("/R2=OFF") != -1)  
   {
-    Serial.println("RELAY2=OFF");
+    Serial.println("R2=OFF");
     digitalWrite(RELAY2,LOW);
     REFRESH = 1;
   }
 
-  if (request.indexOf("/RELAY3=ON") != -1)  
+  if (request.indexOf("/R3=ON") != -1)  
   {
-    Serial.println("RELAY3=ON");
+    Serial.println("R3=ON");
     digitalWrite(RELAY3,HIGH);
     REFRESH = 1;
   }
-  if (request.indexOf("/RELAY3=OFF") != -1)  
+  if (request.indexOf("/R3=OFF") != -1)  
   {
-    Serial.println("RELAY3=OFF");
+    Serial.println("R3=OFF");
     digitalWrite(RELAY3,LOW);
     REFRESH = 1;
   }
 
-  if (request.indexOf("/RELAY4=ON") != -1)  
+  if (request.indexOf("/R4=ON") != -1)  
   {
-    Serial.println("RELAY4=ON");
+    Serial.println("R4=ON");
     digitalWrite(RELAY4,HIGH);
     REFRESH = 1;
   }
-  if (request.indexOf("/RELAY4=OFF") != -1)  
+  if (request.indexOf("/R4=OFF") != -1)  
   {
-    Serial.println("RELAY4=OFF");
+    Serial.println("R4=OFF");
     digitalWrite(RELAY4,LOW);
     REFRESH = 1;
   }
@@ -155,38 +158,38 @@ void loop()
  
   if(digitalRead(RELAY1) == 1) 
   {
-    R1="RELAY1: ON <a href=\"/RELAY1=ON\">[ON]</a><a href=\"/RELAY1=OFF\">[OFF]</a><br>";
+    R1 = RN1 + ": ON <a href=\"/R1=ON\">[ON]</a><a href=\"/R1=OFF\">[OFF]</a><br>";
   } 
   else 
   {
-    R1="RELAY1: OFF <a href=\"/RELAY1=ON\">[ON]</a><a href=\"/RELAY1=OFF\">[OFF]</a><br>";
+    R1 = RN1 + ": OFF <a href=\"/R1=ON\">[ON]</a><a href=\"/R1=OFF\">[OFF]</a><br>";
   }
   
   if(digitalRead(RELAY2) == 1) 
   {
-    R2="RELAY2: ON <a href=\"/RELAY2=ON\">[ON]</a><a href=\"/RELAY2=OFF\">[OFF]</a><br>";
+    R2 = RN2 + ": ON <a href=\"/R2=ON\">[ON]</a><a href=\"/R2=OFF\">[OFF]</a><br>";
   } 
   else 
   {
-    R2="RELAY2: OFF <a href=\"/RELAY2=ON\">[ON]</a><a href=\"/RELAY2=OFF\">[OFF]</a><br>";
+    R2 = RN2 + ": OFF <a href=\"/R2=ON\">[ON]</a><a href=\"/R2=OFF\">[OFF]</a><br>";
   }
   
   if(digitalRead(RELAY3) == 1) 
   {
-    R3="RELAY3: ON <a href=\"/RELAY3=ON\">[ON]</a><a href=\"/RELAY3=OFF\">[OFF]</a><br>";
+    R3 = RN3 + ": ON <a href=\"/R3=ON\">[ON]</a><a href=\"/R3=OFF\">[OFF]</a><br>";
   } 
   else 
   {
-    R3="RELAY3: OFF <a href=\"/RELAY3=ON\">[ON]</a><a href=\"/RELAY3=OFF\">[OFF]</a><br>";
+    R3 = RN3 + ": OFF <a href=\"/R3=ON\">[ON]</a><a href=\"/R3=OFF\">[OFF]</a><br>";
   }
   
   if(digitalRead(RELAY4) == 1) 
   {
-    R4="RELAY4: ON <a href=\"/RELAY4=ON\">[ON]</a><a href=\"/RELAY4=OFF\">[OFF]</a><br>";
+    R4 = RN4 + ": ON <a href=\"/R4=ON\">[ON]</a><a href=\"/R4=OFF\">[OFF]</a><br>";
   } 
   else 
   {
-    R4="RELAY4: OFF <a href=\"/RELAY4=ON\">[ON]</a><a href=\"/RELAY4=OFF\">[OFF]</a><br>";
+    R4 = RN4 + ": OFF <a href=\"/R4=ON\">[ON]</a><a href=\"/R4=OFF\">[OFF]</a><br>";
   }
   
   client.println("<center>Relay Controller</center><hr><br>");
