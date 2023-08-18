@@ -9,6 +9,9 @@
  String RN4 = "Relay4"; // <--- Change to whatever name you want Relay4 called on the webpage.
 // END USER DEFINED VARABLES
 
+// You can connect to the serial UART to see the ESP making connection to your Wifi
+// and see the web requests coming in.  UART Speed: 115200
+
  #define RELAY1 12 // relay connected to  GPIO12
  #define RELAY2 13 // relay connected to  GPIO13
  #define RELAY3 14 // relay connected to  GPIO14
