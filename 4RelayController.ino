@@ -195,12 +195,12 @@ void loop()
     R4 = RN4 + ": OFF <a href=\"/R4=ON\">[ON]</a><a href=\"/R4=OFF\">[OFF]</a><br>";
   }
   
-  client.println("<center>Relay Controller</center><hr><br>");
+  client.println("<center>Relay Controller<hr>***DO NOT USE YOUR BROWSER BACK/FORWARD BUTTON!***</center><br><br>");
   client.println(R1);
   client.println(R2);
   client.println(R3);
   client.println(R4);
-  client.println("<a href=\"/status\">[REFRESH PAGE]</a>  ***DO NOT USE YOUR BROWSER BACK/FORWARD BUTTON!***");
+  client.println("<br><a href=\"/status\">[REFRESH PAGE]</a>");
   client.println("</html>");
  
   delay(1);
